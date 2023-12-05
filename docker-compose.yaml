@@ -1,0 +1,22 @@
+version: '3'
+services:
+    server:
+      build:
+           dockerfile:  Dockerfile.server
+           context: .
+      volumes:
+        - ./bim.txt:/app/bim.txt
+      environment:
+        - PORT=228
+        - DB_FILE=bim.txt
+
+    client:
+      deploy:
+        mode: replicated
+        replicas: 6
+      build:
+           dockerfile:  Dockerfile.client
+           context: .
+      environment:
+        - PORT=228
+        - ADDRESS=server

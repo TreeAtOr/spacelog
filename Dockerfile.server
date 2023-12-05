@@ -1,0 +1,9 @@
+FROM gcc:latest as server
+USER root
+ADD . /app
+
+WORKDIR /app
+
+RUN g++ server/server.cpp -o serverx
+RUN chown -R root serverx
+CMD ["./serverx"]

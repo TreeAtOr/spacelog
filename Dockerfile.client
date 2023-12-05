@@ -1,0 +1,8 @@
+FROM gcc:latest as client
+
+ADD . /app
+
+WORKDIR /app
+
+RUN g++ app/client.cpp -o clientx
+CMD ["./clientx"]
